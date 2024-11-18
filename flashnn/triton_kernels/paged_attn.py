@@ -152,6 +152,7 @@ def paged_attn_w_mma(
             "NUM_KV_HEADS": num_kv_heads,
             "KV_BLOCK_SIZE": kv_block_size,
             "PARTITION_SIZE": partition_size,
+            "matrix_instr_nonkdim" : 464,
         }
         _paged_attn_w_mma_kernel[grid](*kwargs, **const_kwargs)
 
@@ -178,6 +179,7 @@ def paged_attn_w_mma(
                 "NUM_KV_HEADS": num_kv_heads,
                 "PARTITION_SIZE": partition_size,
                 "NUM_PARTITIONS": triton.next_power_of_2(num_splits),
+                "matrix_instr_nonkdim" : 464,
             }
             _paged_attn_w_mma_v2_reduce_kernel[reduce_grid](*kwargs, **const_kwargs)
 
@@ -490,6 +492,7 @@ def paged_attn_w_mma_transv(
             "NUM_KV_HEADS": num_kv_heads,
             "KV_BLOCK_SIZE": kv_block_size,
             "PARTITION_SIZE": partition_size,
+            "matrix_instr_nonkdim" : 464,
         }
         _paged_attn_w_mma_kernel_transv[grid](*kwargs, **const_kwargs)
         # print(f"_paged_attn_w_mma_kernel_transv_best_config = {_paged_attn_w_mma_kernel_transv.best_config}")
@@ -517,6 +520,7 @@ def paged_attn_w_mma_transv(
                 "NUM_KV_HEADS": num_kv_heads,
                 "PARTITION_SIZE": partition_size,
                 "NUM_PARTITIONS": triton.next_power_of_2(num_splits),
+                "matrix_instr_nonkdim" : 464,
             }
             _paged_attn_w_mma_v2_reduce_kernel[reduce_grid](*kwargs, **const_kwargs)
 
@@ -790,6 +794,7 @@ def paged_attn_w_mma_transkv(
             "NUM_KV_HEADS": num_kv_heads,
             "KV_BLOCK_SIZE": kv_block_size,
             "PARTITION_SIZE": partition_size,
+            "matrix_instr_nonkdim" : 464,
         }
         _paged_attn_w_mma_kernel_transkv[grid](*kwargs, **const_kwargs)
         #print(f"_paged_attn_w_mma_kernel_transv_best_config = {_paged_attn_w_mma_kernel_transv.best_config}")
@@ -817,6 +822,7 @@ def paged_attn_w_mma_transkv(
                 "NUM_KV_HEADS": num_kv_heads,
                 "PARTITION_SIZE": partition_size,
                 "NUM_PARTITIONS": triton.next_power_of_2(num_splits),
+                "matrix_instr_nonkdim" : 464,
             }
             _paged_attn_w_mma_v2_reduce_kernel[reduce_grid](*kwargs, **const_kwargs)
 
@@ -1229,6 +1235,7 @@ def paged_attn_w_mma_unrolling2(
             "NUM_KV_HEADS": num_kv_heads,
             "KV_BLOCK_SIZE": kv_block_size,
             "PARTITION_SIZE": partition_size,
+            "matrix_instr_nonkdim" : 464,
         }
         _paged_attn_w_mma_kernel_unrolling2[grid](*kwargs, **const_kwargs)
 
@@ -1255,6 +1262,7 @@ def paged_attn_w_mma_unrolling2(
                 "NUM_KV_HEADS": num_kv_heads,
                 "PARTITION_SIZE": partition_size,
                 "NUM_PARTITIONS": triton.next_power_of_2(num_splits),
+                "matrix_instr_nonkdim" : 464,
             }
             _paged_attn_w_mma_v2_reduce_kernel[reduce_grid](*kwargs, **const_kwargs)
 
@@ -1511,6 +1519,7 @@ def paged_attn_w_mma_unrolling4(
             "NUM_KV_HEADS": num_kv_heads,
             "KV_BLOCK_SIZE": kv_block_size,
             "PARTITION_SIZE": partition_size,
+            "matrix_instr_nonkdim" : 464,
         }
         _paged_attn_w_mma_kernel_unrolling4[grid](*kwargs, **const_kwargs)
 
@@ -1537,6 +1546,7 @@ def paged_attn_w_mma_unrolling4(
                 "NUM_KV_HEADS": num_kv_heads,
                 "PARTITION_SIZE": partition_size,
                 "NUM_PARTITIONS": triton.next_power_of_2(num_splits),
+                "matrix_instr_nonkdim" : 464,
             }
             _paged_attn_w_mma_v2_reduce_kernel[reduce_grid](*kwargs, **const_kwargs)
 
