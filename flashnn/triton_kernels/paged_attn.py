@@ -5,6 +5,7 @@
 import torch
 import triton
 import triton.language as tl
+import os
 
 
 # Requires triton >= 2.2.0
@@ -152,8 +153,9 @@ def paged_attn_w_mma(
             "NUM_KV_HEADS": num_kv_heads,
             "KV_BLOCK_SIZE": kv_block_size,
             "PARTITION_SIZE": partition_size,
-            "matrix_instr_nonkdim" : 464,
         }
+        if "NON_K_DIM" in os.environ:
+            const_kwargs["matrix_instr_nonkdim"] = int(os.environ["NON_K_DIM"])
         _paged_attn_w_mma_kernel[grid](*kwargs, **const_kwargs)
 
         if num_splits != 1:
