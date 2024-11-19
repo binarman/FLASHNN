@@ -187,8 +187,8 @@ def paged_attn_w_mma(
 @triton.autotune(
     configs=[
         triton.Config({}, num_stages=stages, num_warps=warps)
-        for stages in [1, 2]
-        for warps in [1, 2, 4, 8, 16]
+        for stages in [1]
+        for warps in [2]
     ],
     key=["QUERY_GROUP_SIZE", "HEAD_SIZE", "KV_BLOCK_SIZE"],
 )
