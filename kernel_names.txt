@@ -1,2 +1,0 @@
-_paged_attn_w_mma_kernel.ttgir
-_paged_attn_w_mma_v2_reduce_kernel.ttgir
